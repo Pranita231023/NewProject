@@ -1,35 +1,33 @@
-import java.util.*;
+import java.util.Observer;
+import java.util.Observable;
 
-class WeatherStation extends Observable 
-{
-    float temp, humidity, pressure;
+class WeatherStation extends Observable {
+    float temp, hum, press;
 
-    void setMeasurements(float t, float h, float p) 
-    {
-        temp = t; humidity = h; pressure = p;
+    void setData(float t, float h, float p) {
+        temp = t;
+        hum = h;
+        press = p;
         setChanged();
         notifyObservers();
     }
-
-    float getTemperature() { return temp; }
-    float getHumidity() { return humidity; }
-    float getPressure() { return pressure; }
 }
 
 class Display implements Observer {
     public void update(Observable o, Object arg) {
         WeatherStation w = (WeatherStation) o;
-        System.out.println("Temp: " + w.getTemperature() +
-            " Humidity: " + w.getHumidity() +
-            " Pressure: " + w.getPressure());
+        System.out.println("Temp: " + w.temp +
+                           " Humidity: " + w.hum +
+                           " Pressure: " + w.press);
     }
 }
 
-public class Weather3 {
-    public static void main(String[] args) {
+public class weather {
+    public static void main(String[] a) {
         WeatherStation ws = new WeatherStation();
         ws.addObserver(new Display());
-        ws.setMeasurements(30.5f, 65.2f, 1013f);
-        ws.setMeasurements(28.4f, 70.1f, 1010f);
+
+        ws.setData(30.5f, 65.2f, 1013f);
+        ws.setData(28.4f, 70.1f, 1010f);
     }
 }
