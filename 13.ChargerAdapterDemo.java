@@ -1,72 +1,52 @@
-// Volt class
-class Volt 
+class Volt
 {
-    private int volts;
+    int v;
 
-    Volt(int v) 
+    Volt(int v)
     {
-        volts = v;
+        this.v = v;
     }
 
-    int getVolts() 
+    int get()
     {
-        return volts;
+        return v;
     }
 }
 
-// Socket (Adaptee)
-class Socket 
+class Socket
 {
-    Volt getVolt() 
+    Volt getVolt()
     {
-        return new Volt(120); // default household voltage
+        return new Volt(120);
     }
 }
 
-// Adapter Interface
-interface ChargerAdapter 
+class Adapter extends Socket
 {
-    Volt get3Volt();
-    Volt get12Volt();
-    Volt get120Volt();
-}
-
-// Class Adapter (using inheritance)
-class AdapterClass extends Socket implements ChargerAdapter 
-{
-
-    // simple converter method
-    private Volt convert(Volt v, int div) 
+    Volt get3()
     {
-        return new Volt(v.getVolts() / div);
+        return new Volt(getVolt().get() / 40);
     }
 
-    public Volt get3Volt() 
+    Volt get12()
     {
-        return convert(getVolt(), 40); // 120V → 3V
+        return new Volt(getVolt().get() / 10);
     }
 
-    public Volt get12Volt() 
+    Volt get120()
     {
-        return convert(getVolt(), 10); // 120V → 12V
-    }
-
-    public Volt get120Volt() 
-    {
-        return getVolt(); // direct 120V from socket
+        return getVolt();
     }
 }
 
-// Test
-public class ChargerAdapterDemo
+public class Volt1
 {
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
+        Adapter a = new Adapter();
 
-        ChargerAdapter adapter = new AdapterClass();
-
-        System.out.println("3V   : " + adapter.get3Volt().getVolts());
-        System.out.println("12V  : " + adapter.get12Volt().getVolts());
-        System.out.println("120V : " + adapter.get120Volt().getVolts());
+        System.out.println(a.get3().get());
+        System.out.println(a.get12().get());
+        System.out.println(a.get120().get());
     }
 }
