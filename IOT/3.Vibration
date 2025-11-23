@@ -1,0 +1,14 @@
+int s=2, l=13;
+
+void setup(){
+  pinMode(s,INPUT);
+  pinMode(l,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+  int v=digitalRead(s);
+  digitalWrite(l,v);
+  Serial.println(v ? "Vibration!" : "No Vib");
+  delay(200);
+}
