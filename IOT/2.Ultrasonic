@@ -1,0 +1,18 @@
+int t=9,e=10,led=7;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(t,1); pinMode(e,0); pinMode(led,1);
+}
+
+void loop(){
+  digitalWrite(t,0); delayMicroseconds(2);
+  digitalWrite(t,1); delayMicroseconds(10);
+  digitalWrite(t,0);
+
+  int d = pulseIn(e,1)*0.017;
+  Serial.println(d);
+
+  digitalWrite(led, d<200);
+  delay(300);
+}
