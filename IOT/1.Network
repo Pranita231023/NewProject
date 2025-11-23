@@ -1,0 +1,39 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12,11,5,4,3,2);
+
+const char* S[]={"MyWiFi","CollegeNet","Guest123","Lab_AP","Cafe_Free"};
+int R[]={-45,-70,-82,-55,-60};
+bool L[]={1,1,0,1,0};
+int i=0;
+
+void show(int j)
+{
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(S[j]);
+  lcd.setCursor(0,1);
+  lcd.print(R[j]);
+  lcd.print("dBm ");
+  lcd.print(L[j]?"Lock":"Open");
+}
+
+void setup()
+{
+  lcd.begin(16,2);
+  show(0);
+}
+
+void loop()
+{
+  static unsigned long t=0;
+
+  if(millis()-t>1500)
+  {
+    for(int k=0;k<5;k++)
+      R[k]=constrain(R[k]+random(-3,4),-90,-35);
+
+    i=(i+1)%5;
+    show(i);
+    t=millis();
+  }
+}
