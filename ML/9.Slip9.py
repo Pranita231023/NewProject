@@ -91,3 +91,49 @@ plt.ylabel("Income")
 plt.title("Scatter Plot: Age vs Income (Colored by Loan Approval)")
 plt.colorbar(label="Personal Loan (0 = No, 1 = Yes)")
 plt.show()
+
+
+
+
+#OR
+
+
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+df = pd.DataFrame({
+        'Age': [25, 35, 45, 20, 30, 40, 50],
+        'Income': [40, 60, 80, 20, 50, 70, 90],
+        'Education': [1, 2, 2, 1, 3, 2, 3],
+        'Personal_Loan': [0, 0, 1, 0, 0, 1, 1]
+    })
+
+# --- Step 2: Define features and target ---
+X = df[['Age', 'Income', 'Education']]
+y = df['Personal_Loan']
+
+# Target variable (1 = Loan approved, 0 = Not approved)
+y = [0, 0, 1, 0, 0, 1, 1]
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
+
+# Create and train Linear SVM model
+model = SVC(kernel='linear')
+model.fit(X_train, y_train)
+
+# Predict and display accuracy
+y_pred = model.predict(X_test)
+print("Predictions:", y_pred)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+#--------------PLOT
+
+plt.scatter(df['Age'], df['Income'], c=df['Personal_Loan'], s=100)
+plt.xlabel("Age")
+plt.ylabel("Income")
+plt.title("Scatter Plot: Age vs Income (Colored by Loan Approval)")
+plt.colorbar(label="Personal Loan (0 = No, 1 = Yes)")
+plt.show()
