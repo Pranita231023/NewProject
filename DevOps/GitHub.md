@@ -170,7 +170,7 @@ git push origin feature
 git checkout main
 git pull origin main
 ```
-
+git log --oneline --graph --decorate --all # used to check history
 ---
 
 ## 💡 Tips (reminders)
