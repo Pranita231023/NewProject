@@ -1,0 +1,41 @@
+```md
+
+"""
+
+Simple Maven Java Project on EC2 (Short Steps)
+1. Install Java & Maven
+sudo yum install -y java-17-amazon-corretto-devel
+sudo yum install -y maven
+
+2. Create Maven Project
+mvn archetype:generate -DgroupId=com.myapp \
+-DartifactId=helloapp \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DinteractiveMode=false
+
+3. Go to Project Folder
+cd helloapp
+
+4. Edit POM.xml (Add Dependency Example)
+
+Add inside <dependencies>:
+
+<dependency>
+  <groupId>com.google.guava</groupId>
+  <artifactId>guava</artifactId>
+  <version>32.1.2-jre</version>
+</dependency>
+
+5. Compile Project
+mvn compile
+
+6. Package as JAR
+mvn package
+
+7. Run the App
+java -cp target/helloapp-1.0-SNAPSHOT.jar com.myapp.App
+
+
+"""
+
+```
