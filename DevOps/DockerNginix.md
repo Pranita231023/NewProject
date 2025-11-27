@@ -85,10 +85,10 @@ You should see:
 
 🛑 Stop & Remove the Container
 1️⃣ Stop the container
-```docker stop mycontainer
-```
+docker stop mycontainer
+
 2️⃣ Remove the container
-```docker rm mycontainer
-```
+docker rm mycontainer
+
 (Optional) Remove the image
-```docker rmi my-html-app:v1```
+docker rmi my-html-app:v1
