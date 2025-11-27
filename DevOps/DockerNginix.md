@@ -18,10 +18,9 @@ cd docker-html
 ```
 2️⃣ Create a simple HTML web page
 ```vim index.html
-
 ```
-```Paste this:
-
+Paste this:
+```
 <html>
   <body>
     <h1 style="color:blue; text-align:center;">Hello from Docker on EC2!</h1>
